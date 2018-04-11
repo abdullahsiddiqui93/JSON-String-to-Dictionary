@@ -1,0 +1,25 @@
+def jsonstrtodict (jsonstr):
+"""
+Takes a JSON format string
+"""
+    result=dict() 
+
+#Splitting the string into multiple strings using the str.split method.
+#This breaks the string up into a list of strigns which are separeted
+#by a "'" (single quote).
+    splitted = jsonstr.split("'")
+    
+#Having a closer look at the JSON format string,a pattern can be observed
+#for the indices to extract the key/value pairs. Starting at 1 and at every
+#fourth index of the splitted list, the keys can be extracted. 
+#The corresponding values fall two indices later.
+    
+    for i in range (1, (len(splitted)-3), 4):
+        result[splitted[i]]= splitted[i+2]
+
+    return result
+
+#Example String
+jsonstr = "{'totalCount':'1','ID':'1029','IP':'10.0.0.1'}"
+
+result = jsonstrtodict(jsonstr)
